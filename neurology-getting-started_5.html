@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pre-clinical year neurology: Getting started</title>
+
+  <style>
+    :root {
+      --yale-blue: #00356b;
+      --bright-blue: #3b82f6;
+      --ink: #111827;
+      --muted: #6b7280;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --line: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    a {
+      color: var(--bright-blue);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+.nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 10px;
+
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04);
+}
+   .nav {
+  width: min(95vw, 1100px);
+  justify-content: center;
+}
+
+.nav a {
+  white-space: nowrap;
+}
+
+
+   .nav a {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  padding: 10px 16px;
+  border-radius: 999px;
+
+  transition: all 0.2s ease;
+}
+
+.nav a:hover {
+  background: white;
+  color: var(--yale-blue);
+  text-decoration: none;
+}
+.nav a.active {
+  background: var(--yale-blue);
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(0, 53, 107, 0.18);
+}
+
+    .nav-logo {
+  padding: 10px 18px;
+  margin-right: 4px;
+
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--yale-blue);
+
+  border-right: 1px solid var(--line);
+}
+
+    .slide {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 96px 28px 72px;
+      position: relative;
+    }
+
+    .content {
+      width: min(980px, 100%);
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #eaf3ff;
+      color: var(--yale-blue);
+      font-size: 0.88rem;
+      font-weight: 800;
+      margin-bottom: 28px;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      letter-spacing: -0.075em;
+      line-height: 0.92;
+    }
+
+    
+
+    h1 {
+        font-size: clamp(3rem, 8vw, 5rem);
+    }
+
+    h2 {
+      font-size: clamp(2.5rem, 6vw, 5.5rem);
+    }
+
+    p {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 740px;
+      margin: 28px 0 0;
+    }
+
+    .blue {
+      color: var(--yale-blue);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 48px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      min-height: 250px;
+      box-shadow: 0 22px 60px rgba(17, 24, 39, 0.055);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .num {
+      color: var(--bright-blue);
+      font-size: 0.85rem;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.35rem;
+      letter-spacing: -0.04em;
+    }
+
+
+    .card p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .events {
+      display: grid;
+      gap: 14px;
+      margin-top: 42px;
+      max-width: 780px;
+    }
+
+    .event {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px 24px;
+      box-shadow: 0 14px 40px rgba(17, 24, 39, 0.035);
+    }
+
+    .event strong {
+      display: block;
+      font-size: 1.08rem;
+      margin-bottom: 6px;
+    }
+
+    .event span {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .quote {
+      background: var(--yale-blue);
+      color: white;
+      border-radius: 44px;
+      padding: clamp(34px, 6vw, 72px);
+      box-shadow: 0 28px 80px rgba(0, 53, 107, 0.25);
+    }
+
+    .quote h2 {
+      color: white;
+    }
+
+    .quote p {
+      color: #dbeafe;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 44px;
+    }
+
+    .pill {
+      background: white;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 14px 20px;
+      box-shadow: 0 12px 35px rgba(17, 24, 39, 0.035);
+    }
+
+    .pill:hover {
+      background: #eef4ff;
+      color: var(--yale-blue);
+      text-decoration: none;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 42px;
+    }
+
+    .contact {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 22px 60px rgba(17, 24, 39, 0.055);
+    }
+
+    .label {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #eef4ff;
+      color: var(--yale-blue);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .contact h3 {
+      margin: 0 0 12px;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+    }
+
+    .contact p {
+      margin: 0 0 18px;
+      max-width: none;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .contact a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .soft {
+      background:
+        radial-gradient(circle at top right, rgba(59, 130, 246, 0.18), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(0, 53, 107, 0.12), transparent 36%),
+        var(--bg);
+    }
+
+    .final-note {
+      margin-top: 42px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 820px) {
+      html {
+        scroll-snap-type: none;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .slide {
+        min-height: auto;
+        padding: 80px 22px;
+      }
+
+      .cards,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scroll-hint {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+    <nav class="nav">
+  <div class="nav-logo">Pre-clinical year neurology</div>
+
+  <a href="#explore">Why Neurology?</a>
+  <a href="#entry">How to Start</a>
+  <a href="#events">Annual Events</a>
+  <a href="#research">Research Opportunities</a>
+  <a href="#links">Resources</a>
+</nav>
+
+  <section class="slide soft" id="start">
+    <div class="content">
+      <div class="kicker">Student Interest Group in Neurology × Yale Neurology</div>
+      <h1>Pre-clinical year neurology:<br><span class="blue">Getting Started</span></h1>
+      <p>
+        Interested in neurology? You do not need to decide yet.
+        Start by exploring the field, meeting people, and finding the questions that pull you in.
+      </p>
+    </div>
+    <div class="scroll-hint">Scroll ↓</div>
+  </section>
+
+  <section class="slide" id="explore">
+    <div class="content">
+      <h2>Explore first.<br><span class="blue">Decide later.</span></h2>
+      <p>
+        Students arrive at neurology through many different paths: neuroscience research, engineering,
+        psychology, neurosurgery, internal medicine, critical care, rehabilitation,
+        or simply a memorable patient encounter.
+      </p>
+      <p>
+        Early involvement is not about committing to a specialty. It is about discovering
+        what feels interesting.
+      </p>
+    </div>
+  </section>
+
+  <section class="slide soft" id="entry">
+    <div class="content">
+      <h2>Start with<br><span class="blue">one small step.</span></h2>
+
+      <div class="cards">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="num">1</div>
+          <h3>Show up</h3>
+        </div>
+
+        <p>
+          Attend an event hosted by the
+          <a href="#">Student Interest Group in Neurology</a>, meet residents,
+          or sit in on <a href="#">Neurology Grand Rounds</a>.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="num">2</div>
+          <h3>See the work</h3>
+        </div>
+
+        <p>
+          Visit <a href="https://research.yale.edu/cores/brainworks">BrainWorks</a>,
+          Yale’s human neuroscience research and outreach center, or shadow in clinic,
+          on consults, or in the neuro ICU.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="num">3</div>
+          <h3>Email someone</h3>
+        </div>
+
+        <p>
+        Many <a href="https://medicine.yale.edu/dfri/research-profiles/?orgId=108788">mentorships</a> begin with a simple message explaining your common interests
+        </p>
+      </div>
+
+    </div>
+
+    </div>
+  </section>
+
+  <section class="slide" id="events">
+    <div class="content">
+      <h2>Upcoming ways<br><span class="blue">to connect.</span></h2>
+      <p>
+        Annual events for students interested in neurology and neuroscience.
+      </p>
+
+      <div class="events">
+        <!--
+          <div class="event">
+          <strong>SIGN welcome event</strong>
+          <span>Meet student leaders and learn how to get involved early.</span>
+        </div>
+        -->
+
+        <div class="event">
+          <strong>Faculty and resident mixer</strong>
+          <span>Informal conversation with people across clinical neurology and neuroscience.</span>
+        </div>
+        <div class="event">
+          <strong>BrainWorks research showcase</strong>
+          <span>Brief lab introductions, human neuroscience methods, and a reception with BrainWorks research groups.</span>
+        </div>
+        <div class="event">
+          <strong>Neurology Match Panel</strong>
+          <span>Current students share advice about applying into neurology.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide soft" id="research">
+    <div class="content">
+      <h2>Finding research<br><span class="blue">starts with a question.</span></h2>
+      <p>
+        Yale has opportunities spanning basic, translational, computational,
+        cognitive, imaging, and clinical neuroscience.
+      </p>
+      <p>
+        Start with a question, disease area, method, or patient population that interests you.
+      </p>
+
+      <div class="pills">
+        <a class="pill" href="https://research.yale.edu/cores/brainworks">BrainWorks</a>
+        <a class="pill" href="https://medicine.yale.edu/neurology/research/cnic/">Imaging</a>
+        <a class="pill" href="https://psychology.yale.edu/research/cognitive-psychology">Cognitive Science</a>
+        <a class="pill" href="https://medicine.yale.edu/inp/">Neuroscience</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" id="links">
+    <div class="content">
+      <h2>How to get <br><span class="blue">involved</span></h2>
+      <p>
+        Resources specifically for pre-clinical students interested in Neurology
+      </p>
+
+      <div class="contact-grid">
+        <div class="contact">
+          <div class="label">Neurology Clerkship Director</div>
+          <h3>Dr. Jeffrey Dewey</h3>
+          <p>Clinical neurology education, clerkship perspective, and student pathways into neurology.</p>
+          <a href="https://medicine.yale.edu/md-program/curriculum/clerkships/neurology/">Neurology Clerkship Resources</a>
+        </div>
+
+        <!--
+        <div class="contact">
+          <div class="label">Neurology Education</div>
+          <h3>Dr. Jeremy Moeller</h3>
+          <p>Neurology education, curriculum, and medical student learning.</p>
+          <a href="https://medicine.yale.edu/neurology/profile/jeremy-moeller/">Profile</a>
+        </div>
+        -->
+
+        <div class="contact">
+          <div class="label">Student Events</div>
+          <h3>Student Interest Group in Neurology (SIGN)</h3>
+          <p>Panels, mixers, mentorship, research exposure, and student-to-student advice.</p>
+          <a href="https://yaleconnect.yale.edu/ysmsign/home/">Join SIGN mailing list</a>
+        </div>
+
+        <div class="contact">
+              <div class="label">Volunteering Opportunities</div>
+              <h3>Brain Education Day and Neuro Outreach</h3>
+              <p>Opportunities to teach and share neuroscience with students and the broader community.</p>
+              <a href="https://medicine.yale.edu/inp/outreach/">Neuroscience Outreach Programs</a>
+            </div>
+
+      </div>
+
+    </div>
+  </section>
+
+   <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".nav a[href^='#']");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        const id = entry.target.id;
+
+        navLinks.forEach((link) => {
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") === `#${id}`
+          );
+        });
+      });
+    },
+    {
+      threshold: 0.6
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+});
+</script>
+
+</body>
+</html>
